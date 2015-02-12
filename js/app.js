@@ -2,7 +2,8 @@
 
 var app = angular.module('app', ['ngResource', 'ui.router','ngMaterial']);
 
-app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($stateProvider, $urlRouterProvider, $httpProvider) {
+app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdThemingProvider", 
+        function ($stateProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider) {
 
     // IEのAJAXリクエストキャッシュを無効化
     if (!$httpProvider.defaults.headers.get) {
@@ -12,6 +13,10 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
     $httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.common['Pragma'] = 'no-cache';
     $httpProvider.defaults.headers.common['Expires'] = 0;
+
+    $mdThemingProvider.theme("default")
+        .primaryPalette("indigo")
+        .accentPalette("cyan");
   
     // インターセプタをプッシュ
     //$httpProvider.interceptors.push('ResponseErrorInterceptor');
@@ -48,9 +53,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
     //   });
 }]);
 
-app.controller('AppCtrl', ['$scope', '$mdSidenav', function($scope, $mdSidenav){
-  $scope.toggleSidenav = function(menuId) {
-    $mdSidenav(menuId).toggle();
-  };
+app.controller('AppCtrl', ['$scope', function($scope){
+  
  
 }]);
