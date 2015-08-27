@@ -16,7 +16,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdTheming
 
     $mdThemingProvider.theme("default")
         .primaryPalette("indigo")
-        .accentPalette("cyan");
+        .accentPalette("deep-purple");
   
     // インターセプタをプッシュ
     //$httpProvider.interceptors.push('ResponseErrorInterceptor');
