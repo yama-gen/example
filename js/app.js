@@ -92,6 +92,33 @@ app.controller('AppCtrl', ['$scope', function($scope){
         { "year" : "2015", "month" : "01", "day" : "30", "weekday" : "Friday", "holiday" : "" },
         { "year" : "2015", "month" : "01", "day" : "31", "weekday" : "Saturday", "holiday" : "" }
     ];
- 
+
+    $scope.showAdvanced = function($event) {
+      alert("aaa");
+      $mdDialog.show({
+        controller: LoginController,
+        templateUrl: 'tpl/login/login.tpl',
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+    }; 
+}]);
+
+app.controller('LoginController', ['$scope', function($scope, $mdDialog){
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
 }]);
 
