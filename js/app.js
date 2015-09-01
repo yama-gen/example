@@ -53,7 +53,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdTheming
     //   });
 }]);
 
-app.controller('AppCtrl', ['$scope', function($scope){
+app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
 
     this.cals = [
         { "year" : "2014", "month" : "12", "day" : "28", "weekday" : "Sunday", "holiday" : "" },
@@ -94,9 +94,8 @@ app.controller('AppCtrl', ['$scope', function($scope){
     ];
 
     $scope.showAdvanced = function($event) {
-      alert("aaa");
       $mdDialog.show({
-        controller: LoginController,
+        controller: LoginCtrl,
         templateUrl: 'tpl/login/login.tpl',
         parent: angular.element(document.body),
         targetEvent: $event,
@@ -107,10 +106,10 @@ app.controller('AppCtrl', ['$scope', function($scope){
       }, function() {
         $scope.status = 'You cancelled the dialog.';
       });
-    }; 
+    };
 }]);
 
-app.controller('LoginController', ['$scope', function($scope, $mdDialog){
+function LoginCtrl($scope, $mdDialog){
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -120,5 +119,4 @@ app.controller('LoginController', ['$scope', function($scope, $mdDialog){
   $scope.answer = function(answer) {
     $mdDialog.hide(answer);
   };
-}]);
-
+}
