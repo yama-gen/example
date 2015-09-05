@@ -15,33 +15,31 @@
   </head>
   <body layout="column">
   	<md-toolbar layout="row">
-    	<div class="md-toolbar-tools">
+    	<div class="md-toolbar-tools" ng-controller="HeaderCtrl as headerCtrl">
       		<span>Private Event Management</span>
       		<span flex></span>
       		<md-button>イベント登録</md-button>
       		<md-button>イベント管理</md-button>
       		<md-button>個人設定</md-button>
       		<md-button>ログアウト</md-button>
+          <md-button ng-click="showAdvanced($event);">ログイン</md-button>
     	</div>
   	</md-toolbar>
-	<md-content layout="column" class="md-padding" ng-controller="AppCtrl as appCtrl" flex>
-  <md-button ng-click="showAdvanced($event);">ログイン</md-button>
-		<md-grid-list md-cols="7" md-row-height="6:1" md-gutter="4px">
-			<md-grid-tile>Sunday</md-grid-tile>
-    		<md-grid-tile>Monday</md-grid-tile>
-    		<md-grid-tile>Tuesday</md-grid-tile>
-    		<md-grid-tile>Wednesday</md-grid-tile>
-    		<md-grid-tile>Thursday</md-grid-tile>
-    		<md-grid-tile>Friday</md-grid-tile>
-    		<md-grid-tile>Saturday</md-grid-tile>
-		</md-grid-list>
-  		<md-grid-list md-cols="7" md-row-height="6:1" md-gutter="4px">
-        	<md-grid-tile md-rowspan="4" ng-repeat="cal in appCtrl.cals" ng-class="{red : cal.holiday || cal.weekday == 'Sunday', blue: cal.weekday == 'Saturday', gray: !cal.holiday && cal.weekday != 'Sunday' && cal.weekday != 'Saturday'}">
-        		<md-grid-tile-header>
-        			<h3><b>{{cal.day}}</b> {{cal.holiday}}</h3>
-        		</md-grid-tile-header>
-        	</md-grid-tile>
+	  <md-content layout="column" class="md-padding" ng-controller="AppCtrl as appCtrl" flex>
+  	  <md-grid-list md-cols="7" md-row-height="6:1" md-gutter="4px">
+        <md-grid-tile>Sunday</md-grid-tile>
+        <md-grid-tile>Monday</md-grid-tile>
+        <md-grid-tile>Tuesday</md-grid-tile>
+        <md-grid-tile>Wednesday</md-grid-tile>
+        <md-grid-tile>Thursday</md-grid-tile>
+        <md-grid-tile>Friday</md-grid-tile>
+        <md-grid-tile>Saturday</md-grid-tile>
+    	  <md-grid-tile md-rowspan="4" ng-repeat="cal in appCtrl.cals" ng-class="{red : cal.holiday || cal.weekday == 'Sunday', blue: cal.weekday == 'Saturday', gray: !cal.holiday && cal.weekday != 'Sunday' && cal.weekday != 'Saturday'}">
+        	<md-grid-tile-header>
+        	  <h3><b>{{cal.day}}</b> {{cal.holiday}}</h3>
+        	</md-grid-tile-header>
+        </md-grid-tile>
     	</md-grid-list>
-	</md-content>
+	  </md-content>
   </body>
 </html>

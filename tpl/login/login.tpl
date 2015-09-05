@@ -1,31 +1,32 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog aria-label="ログイン">
   <form>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Mango (Fruit)</h2>
+      <h2>ログイン</h2>
       <span flex></span>
       <md-button class="md-icon-button" ng-click="answer('not applicable')">
-        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        <md-icon md-svg-src="img/icon/ic_clear_white_24px.svg" aria-label="Close dialog"></md-icon>
       </md-button>
     </div>
   </md-toolbar>
-  <md-dialog-content style="max-width:800px;max-height:810px; ">
+  <md-dialog-content style="min-width:400px;min-height:200px; ">
     <div>
-      <p>
-        The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species are found in nature as wild mangoes. They all belong to the flowering plant family Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been distributed worldwide to become one of the most cultivated fruits in the tropics.
-      </p>
+      <md-input-container>
+        <md-icon md-svg-src="img/icon/ic_email_black_24px.svg"></md-icon>
+        <input ng-model="login.email" type="email" placeholder="メールアドレス">
+      </md-input-container>
+      <md-input-container>
+        <md-icon md-svg-src="img/icon/ic_vpn_key_black_24px.svg"></md-icon>
+        <input ng-model="login.password" type="password" placeholder="パスワード">
+      </md-input-container>
+      <div>
+        <md-checkbox ng-model="login.isSave">ログイン情報を保持する</md-checkbox>
+      </div>
     </div>
   </md-dialog-content>
   <div class="md-actions" layout="row">
-    <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" hide show-md>
-      More on Wikipedia
-    </md-button>
-    <span flex></span>
     <md-button ng-click="answer('not useful')">
-     Not Useful
-    </md-button>
-    <md-button ng-click="answer('useful')" style="margin-right:20px;">
-      Useful
+     ログイン
     </md-button>
   </div>
   </form>
