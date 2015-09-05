@@ -53,7 +53,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdTheming
     //   });
 }]);
 
-app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
+app.controller('AppCtrl', ['$scope', function($scope){
 
     this.cals = [
         { "year" : "2014", "month" : "12", "day" : "28", "weekday" : "Sunday", "holiday" : "" },
@@ -92,21 +92,23 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
         { "year" : "2015", "month" : "01", "day" : "30", "weekday" : "Friday", "holiday" : "" },
         { "year" : "2015", "month" : "01", "day" : "31", "weekday" : "Saturday", "holiday" : "" }
     ];
+}]);
 
-    $scope.showAdvanced = function($event) {
-      $mdDialog.show({
-        controller: LoginCtrl,
-        templateUrl: 'tpl/login/login.tpl',
-        parent: angular.element(document.body),
-        targetEvent: $event,
-        clickOutsideToClose:true
-      })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
-      });
-    };
+app.controller('HeaderCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
+  $scope.showAdvanced = function($event) {
+    $mdDialog.show({
+      controller: LoginCtrl,
+      templateUrl: 'tpl/login/login.tpl',
+      parent: angular.element(document.body),
+      targetEvent: $event,
+      clickOutsideToClose:true
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
 }]);
 
 function LoginCtrl($scope, $mdDialog){
