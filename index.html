@@ -24,89 +24,39 @@
           <li disabled class="mdl-menu__item">Disabled Action</li>
           <li class="mdl-menu__item">Yet Another Action</li>
         </ul>
-        
       </header>
       <main class="mdl-layout__content">
         <div class="page-content">
-        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-          <div class="mdl-tabs__tab-bar">
-            <a href="#starks-panel" class="mdl-tabs__tab is-active">Starks</a>
-            <a href="#lannisters-panel" class="mdl-tabs__tab">Lannisters</a>
-            <a href="#targaryens-panel" class="mdl-tabs__tab">Targaryens</a>
-          </div>
-
-          <div class="mdl-tabs__panel is-active" id="starks-panel">
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">Welcome</h2>
-              </div>
-              <div class="mdl-card__supporting-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Mauris sagittis pellentesque lacus eleifend lacinia...
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                  Get Started
-                </a>
-              </div>
-              <div class="mdl-card__menu">
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">share</i>
-                </button>
+          <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+              <a href="#thread-panel" class="mdl-tabs__tab is-active">Thread</a>
+              <a href="#calendar-panel" class="mdl-tabs__tab">Calendar</a>
+              <a href="#map-panel" class="mdl-tabs__tab">Map</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="thread-panel">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Welcome</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Mauris sagittis pellentesque lacus eleifend lacinia...
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    Get Started
+                  </a>
+                </div>
+                <div class="mdl-card__menu">
+                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons">share</i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-          
-
-
-        <!-- Your content goes here -->
-
-
-        </div>
       </main>
     </div>
-    <!--
-  	<md-toolbar layout="row">
-    	<div class="md-toolbar-tools" ng-controller="HeaderCtrl as headerCtrl">
-      		<span>Private Event Management</span>
-      		<span flex></span>
-          <div class="lock-size" layout="row" layout-align="center center">
-            <md-fab-speed-dial md-direction="down"　ng-class="md-fling">
-              <md-fab-trigger>
-                <md-button aria-label="menu" class="md-fab md-warn">
-                  <md-icon md-svg-src="img/icon/ic_account_circle_white_24px.svg"></md-icon>
-                </md-button>
-              </md-fab-trigger>
-              <md-fab-actions>
-                <md-button aria-label="アカウント設定" class="md-fab md-raised md-mini">
-                  <md-icon md-svg-src="img/icon/ic_settings_white_24px.svg" aria-label="アカウント設定"></md-icon>
-                </md-button>
-                <md-button aria-label="ログアウト" class="md-fab md-raised md-mini">
-                  <md-icon md-svg-src="img/icon/ic_directions_run_white_24px.svg" aria-label="ログアウト"></md-icon>
-                </md-button>
-              </md-fab-actions>
-            </md-fab-speed-dial>
-          </div>
-          <md-button ng-click="showAdvanced($event);">ログイン</md-button>
-    	</div>
-  	</md-toolbar>
-	  <md-content layout="column" class="md-padding" ng-controller="AppCtrl as appCtrl" flex>
-  	  <md-grid-list md-cols="7" md-row-height="6:1" md-gutter="4px">
-        <md-grid-tile>Sunday</md-grid-tile>
-        <md-grid-tile>Monday</md-grid-tile>
-        <md-grid-tile>Tuesday</md-grid-tile>
-        <md-grid-tile>Wednesday</md-grid-tile>
-        <md-grid-tile>Thursday</md-grid-tile>
-        <md-grid-tile>Friday</md-grid-tile>
-        <md-grid-tile>Saturday</md-grid-tile>
-    	  <md-grid-tile md-rowspan="4" ng-repeat="cal in appCtrl.cals" ng-class="{red : cal.holiday || cal.weekday == 'Sunday', blue: cal.weekday == 'Saturday', gray: !cal.holiday && cal.weekday != 'Sunday' && cal.weekday != 'Saturday'}">
-        	<md-grid-tile-header>
-        	  <h3><b>{{cal.day}}</b> {{cal.holiday}}</h3>
-        	</md-grid-tile-header>
-        </md-grid-tile>
-    	</md-grid-list>
-	  </md-content>
-    -->
   </body>
 </html>
