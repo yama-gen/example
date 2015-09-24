@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app', ['ngResource', 'ui.router','ngMaterial']);
+var app = angular.module('app', ['ngResource', 'ui.router']);
 
 app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdThemingProvider", 
         function ($stateProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider) {
@@ -13,10 +13,6 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdTheming
     $httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.common['Pragma'] = 'no-cache';
     $httpProvider.defaults.headers.common['Expires'] = 0;
-
-    $mdThemingProvider.theme("default")
-        .primaryPalette("indigo")
-        .accentPalette("deep-purple");
   
     // インターセプタをプッシュ
     //$httpProvider.interceptors.push('ResponseErrorInterceptor');

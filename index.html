@@ -1,219 +1,83 @@
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.cyan-indigo.min.css" /> 
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgVItkFH0GzxkbAsHwDoy7xx3q-uMDSlo"></script>
     <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/angular-resource.min.js"></script>
     <script src="js/angular-ui-router.min.js"></script>
     <script src="js/app.js"></script>
   </head>
   <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header wrapper">
-        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">more_vert</i>
-        </button>
-        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-          <li class="mdl-menu__item">Some Action</li>
-          <li class="mdl-menu__item">Another Action</li>
-          <li disabled class="mdl-menu__item">Disabled Action</li>
-          <li class="mdl-menu__item">Yet Another Action</li>
-        </ul>
-      </header>
-      <main class="mdl-layout__content">
-        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-          <div class="mdl-tabs__tab-bar">
-            <a href="#thread-panel" class="mdl-tabs__tab is-active">Thread</a>
-            <a href="#calendar-panel" class="mdl-tabs__tab">Calendar</a>
-            <a href="#map-panel" class="mdl-tabs__tab">Map</a>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">Logo</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card blue-grey darken-1 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
           </div>
-          <div class="mdl-tabs__panel is-active" id="thread-panel">
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell--6-col">
-              <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Welcome</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Get Started
-                  </a>
-                </div>
-                <div class="mdl-card__menu">
-                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                  </button>
-                </div>
-              </div>
-            </section>
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell--6-col">
-              <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Welcome</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Get Started
-                  </a>
-                </div>
-                <div class="mdl-card__menu">
-                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                  </button>
-                </div>
-              </div>
-            </section>
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell--6-col">
-              <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Welcome</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Get Started
-                  </a>
-                </div>
-                <div class="mdl-card__menu">
-                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                  </button>
-                </div>
-              </div>
-            </section>
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell--6-col">
-              <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Welcome</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Get Started
-                  </a>
-                </div>
-                <div class="mdl-card__menu">
-                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                  </button>
-                </div>
-              </div>
-            </section>
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell--6-col">
-              <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__title">
-                  <h2 class="mdl-card__title-text">Welcome</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Get Started
-                  </a>
-                </div>
-                <div class="mdl-card__menu">
-                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                  </button>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="mdl-tabs__panel" id="calendar-panel">
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-cell--6-col">
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">01</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">02</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">03</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">04</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">05</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">06</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-              	<div class="demo-card-square mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <h2 class="mdl-card__title-text">07</h2>
-                  </div>
-                  <div class="mdl-card__supporting-text">
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="mdl-tabs__panel" id="map-panel">
-            <div class="map-embed">
-	          <div id="map-canvas"></div>
-            </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
           </div>
         </div>
-      </main>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card blue-grey darken-1 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card blue-grey darken-1 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card blue-grey darken-1 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
     </div>
+
   </body>
 </html>
