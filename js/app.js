@@ -2,14 +2,13 @@
 
 var app = angular.module('app', ['ngResource', 'ui.router']);
 
-app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdThemingProvider", 
-        function ($stateProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider) {
+app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", 
+        function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     // IEのAJAXリクエストキャッシュを無効化
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};
     }
-
     $httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.common['Pragma'] = 'no-cache';
     $httpProvider.defaults.headers.common['Expires'] = 0;
@@ -49,72 +48,25 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$mdTheming
     //   });
 }]);
 
-app.controller('AppCtrl', ['$scope', function($scope){
+app.controller('AppCtrl', ['$scope', function($scope) {
 
-    this.cals = [
-        { "year" : "2014", "month" : "12", "day" : "28", "weekday" : "Sunday", "holiday" : "" },
-        { "year" : "2014", "month" : "12", "day" : "29", "weekday" : "Monday", "holiday" : "" },
-        { "year" : "2014", "month" : "12", "day" : "30", "weekday" : "Tuesday", "holiday" : "" },
-        { "year" : "2014", "month" : "12", "day" : "31", "weekday" : "Wednesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "01", "weekday" : "Thursday", "holiday" : "元日" },
-        { "year" : "2015", "month" : "01", "day" : "02", "weekday" : "Friday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "03", "weekday" : "Saturday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "04", "weekday" : "Sunday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "05", "weekday" : "Monday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "06", "weekday" : "Tuesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "07", "weekday" : "Wednesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "08", "weekday" : "Thursday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "09", "weekday" : "Friday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "10", "weekday" : "Saturday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "11", "weekday" : "Sunday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "12", "weekday" : "Monday", "holiday" : "成人の日" },
-        { "year" : "2015", "month" : "01", "day" : "13", "weekday" : "Tuesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "14", "weekday" : "Wednesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "15", "weekday" : "Thursday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "16", "weekday" : "Friday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "17", "weekday" : "Saturday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "18", "weekday" : "Sunday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "19", "weekday" : "Monday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "20", "weekday" : "Tuesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "21", "weekday" : "Wednesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "22", "weekday" : "Thursday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "23", "weekday" : "Friday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "24", "weekday" : "Saturday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "25", "weekday" : "Sunday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "26", "weekday" : "Monday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "27", "weekday" : "Tuesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "28", "weekday" : "Wednesday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "29", "weekday" : "Thursday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "30", "weekday" : "Friday", "holiday" : "" },
-        { "year" : "2015", "month" : "01", "day" : "31", "weekday" : "Saturday", "holiday" : "" }
+    $scope.events = [
+        { name: '第5回GFAM杯', startDatetime: '2015/10/10(土) 08:00', endDatetime: '2015/10/10(土) 16:00', place: '取手国際ゴルフ倶楽部', cost: '20,000', capacity: '20', participant: '14'},
+        { name: 'バーベキュー', startDatetime: '2015/10/24(土) 10:00', endDatetime: '2015/10/25(日) 10:00', place: '小田原', cost: '5,000', capacity: '15', participant: '9'}
     ];
 }]);
 
-app.controller('HeaderCtrl', ['$scope', '$mdDialog', function($scope, $mdDialog){
-  $scope.showAdvanced = function($event) {
-    $mdDialog.show({
-      controller: LoginCtrl,
-      templateUrl: 'tpl/login/login.tpl',
-      parent: angular.element(document.body),
-      targetEvent: $event,
-      clickOutsideToClose:true
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-  };
-}]);
 
-function LoginCtrl($scope, $mdDialog){
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
-}
+app.service('EventResource', function($resource) {
+  return $resource(
+    '/api/event/:id',
+    {id: '@id'},
+    {
+      'get': {method:'GET'},
+      'query': {method:'GET', isArray:true},
+      'save': {method:'POST'},
+      'update': {method:'PUT'},
+      'delete': {method:'DELETE'}
+    }
+  );
+});
