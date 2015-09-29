@@ -1,4 +1,8 @@
 'use strict';
+$(document).ready(function(){
+    $('.modal-trigger').leanModal();
+  });
+
 
 var app = angular.module('app', ['ngResource', 'ui.router']);
 
