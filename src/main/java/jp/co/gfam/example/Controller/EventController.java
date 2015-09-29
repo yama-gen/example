@@ -18,8 +18,8 @@ public class EventController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Event> get() {
         return new ArrayList<Event>() {{
-            add(new Event("‘æ5‰ñGFAM”t", "2015/10/10(“y) 08:00", "2015/10/10(“y) 16:00", "æè‘ÛƒSƒ‹ƒt‹äŠy•”", 20000L, 20L, 14L));
-            add(new Event("ƒo[ƒxƒLƒ…[", "2015/10/24(“y) 10:00", "2015/10/25(“ú) 10:00", "¬“cŒ´", 5000L, 15L, 12L));
+            add(new Event("ç¬¬5å›GFAMæ¯", "2015/10/10(åœŸ) 08:00", "2015/10/10(åœŸ) 16:00", "å–æ‰‹å›½éš›ã‚´ãƒ«ãƒ•å€¶æ¥½éƒ¨", 20000L, 20L, 14L));
+            add(new Event("ãƒãƒ¼ãƒ™ã‚­ãƒ¥ãƒ¼", "2015/10/24(åœŸ) 10:00", "2015/10/25(æ—¥) 10:00", "å°ç”°åŸ", 5000L, 15L, 12L));
         }};
     }
 }
