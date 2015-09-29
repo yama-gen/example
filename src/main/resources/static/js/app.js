@@ -70,3 +70,15 @@ app.service('EventResource', function($resource) {
     }
   );
 });
+
+app.factory('EventModel', function() {
+    return {
+        name: '',
+        startDateTime: '',
+        endDatetime: '',
+        place: '',
+        cost: '',
+        capacity: '',
+        participant: ''
+    };
+});
