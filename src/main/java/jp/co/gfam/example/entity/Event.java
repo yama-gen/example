@@ -1,6 +1,8 @@
 package jp.co.gfam.example.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by tikK56028 on 2015/09/29.
@@ -9,6 +11,11 @@ import javax.persistence.Entity;
 public class Event {
 
     public Event() {}
+
+    public Event(Long eventId, String name, String startDatetime, String endDatetime, String place, Long cost, Long capacity, Long participant) {
+        this(name, startDatetime, endDatetime, place, cost, capacity, participant);
+        this.eventId = eventId;
+    }
 
     public Event(String name, String startDatetime, String endDatetime, String place, Long cost, Long capacity, Long participant) {
         this.name = name;
@@ -19,6 +26,10 @@ public class Event {
         this.capacity = capacity;
         this.participant = participant;
     }
+
+    @Id
+    @GeneratedValue
+    private Long eventId;
 
     private String name;
 
@@ -33,6 +44,14 @@ public class Event {
     private Long capacity;
 
     private Long participant;
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
+    }
 
     public String getName() {
         return name;

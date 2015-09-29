@@ -48,18 +48,14 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider",
     //   });
 }]);
 
-app.controller('AppCtrl', ['$scope', function($scope) {
-
-    $scope.events = [
-        { name: '第5回GFAM杯', startDatetime: '2015/10/10(土) 08:00', endDatetime: '2015/10/10(土) 16:00', place: '取手国際ゴルフ倶楽部', cost: '20,000', capacity: '20', participant: '14'},
-        { name: 'バーベキュー', startDatetime: '2015/10/24(土) 10:00', endDatetime: '2015/10/25(日) 10:00', place: '小田原', cost: '5,000', capacity: '15', participant: '9'}
-    ];
+app.controller('AppCtrl', ['$scope', 'EventResource', function($scope, EventResource) {
+    $scope.events = EventResource.query();
 }]);
 
 
 app.service('EventResource', function($resource) {
   return $resource(
-    '/api/event/:id',
+    '/event/',
     {id: '@id'},
     {
       'get': {method:'GET'},
