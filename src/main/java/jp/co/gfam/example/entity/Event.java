@@ -3,6 +3,8 @@ package jp.co.gfam.example.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by tikK56028 on 2015/09/29.
@@ -27,6 +29,9 @@ public class Event {
     private Long capacity;
 
     private String detail;
+
+    @OneToMany(mappedBy="event")
+    private List<MemberEvent> memberEventList;
 
     public Long getEventId() {
         return eventId;
@@ -90,5 +95,13 @@ public class Event {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public List<MemberEvent> getMemberEventList() {
+        return memberEventList;
+    }
+
+    public void setMemberEventList(List<MemberEvent> memberEventList) {
+        this.memberEventList = memberEventList;
     }
 }
