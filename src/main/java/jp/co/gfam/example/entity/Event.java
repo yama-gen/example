@@ -10,23 +10,6 @@ import javax.persistence.Id;
 @Entity
 public class Event {
 
-    public Event() {}
-
-    public Event(Long eventId, String name, String startDatetime, String endDatetime, String place, Long cost, Long capacity, Long participant) {
-        this(name, startDatetime, endDatetime, place, cost, capacity, participant);
-        this.eventId = eventId;
-    }
-
-    public Event(String name, String startDatetime, String endDatetime, String place, Long cost, Long capacity, Long participant) {
-        this.name = name;
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.place = place;
-        this.cost = cost;
-        this.capacity = capacity;
-        this.participant = participant;
-    }
-
     @Id
     @GeneratedValue
     private Long eventId;
@@ -43,7 +26,7 @@ public class Event {
 
     private Long capacity;
 
-    private Long participant;
+    private String detail;
 
     public Long getEventId() {
         return eventId;
@@ -101,11 +84,11 @@ public class Event {
         this.capacity = capacity;
     }
 
-    public Long getParticipant() {
-        return participant;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setParticipant(Long participant) {
-        this.participant = participant;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }

@@ -54,6 +54,13 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider",
 
 app.controller('AppCtrl', ['$scope', 'EventResource', function($scope, EventResource) {
     $scope.events = EventResource.query();
+
+
+    $scope.register = function() {
+        EventResource.save($scope.event, function() {
+            $scope.events = EventResource.query();
+        });
+    }
 }]);
 
 
@@ -69,16 +76,4 @@ app.service('EventResource', function($resource) {
       'delete': {method:'DELETE'}
     }
   );
-});
-
-app.factory('EventModel', function() {
-    return {
-        name: '',
-        startDateTime: '',
-        endDatetime: '',
-        place: '',
-        cost: '',
-        capacity: '',
-        participant: ''
-    };
 });
