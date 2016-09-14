@@ -1,17 +1,16 @@
 package jp.co.gfam.example.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jp.co.gfam.example.entity.Event;
 import jp.co.gfam.example.entity.MemberEvent;
 import jp.co.gfam.example.repository.EventRepository;
 import jp.co.gfam.example.repository.MemberEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,14 +26,13 @@ public class EventController {
     @Autowired
     private MemberEventRepository memberEventRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Event> get() {
         return eventRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void save(@RequestBody String body) throws Exception {
-        Event entity = new ObjectMapper().readValue(body, Event.class);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void save(@RequestBody Event entity) throws Exception {
         eventRepository.save(entity);
 
         MemberEvent memberEvent = new MemberEvent();
