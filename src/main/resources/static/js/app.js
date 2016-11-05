@@ -1,72 +1,64 @@
 'use strict';
-$(document).ready(function(){
-    $('.modal-trigger').leanModal();
-  });
 
+var app = angular.module('app', ['ngResource', 'ngMaterial']);
 
-var app = angular.module('app', ['ngResource', 'ui.router']);
+app.controller('AppCtrl', ['$scope', '$mdDialog', 'TaskResource', function($scope, $mdDialog, TaskResource) {
+    $scope.tasks = TaskResource.query();
 
-app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", 
-        function ($stateProvider, $urlRouterProvider, $httpProvider) {
-
-    // IEのAJAXリクエストキャッシュを無効化
-    if (!$httpProvider.defaults.headers.get) {
-        $httpProvider.defaults.headers.get = {};
-    }
-    $httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
-    $httpProvider.defaults.headers.common['Pragma'] = 'no-cache';
-    $httpProvider.defaults.headers.common['Expires'] = 0;
-  
-    // インターセプタをプッシュ
-    //$httpProvider.interceptors.push('ResponseErrorInterceptor');
-  
-    // 初期表示時、すべての郵便物ボックスを一覧表示する。
-    //$urlRouterProvider.otherwise("/boxTree");
-    // $stateProvider
-    //   .state("boxTree", {
-    //     url: "/boxTree",
-    //     views: {
-    //       "leftView": {
-    //         templateUrl: "/tpl/letter-pc/boxTree.tpl.html",
-    //         controller: "SearchBoxTreeController",
-    //         resolve: {
-    //           boxes: function(PlBox){
-    //             return PlBox.get({target: 'boxTree'}).$promise;
-    //           }
-    //         }
-    //       },
-    //       "ctrlView": {
-    //         templateUrl: "/tpl/letter-pc/mailListCtrl.tpl.html",
-    //         controller: "SearchMailListCtrlController"
-    //       },
-    //       "centerView": {
-    //         templateUrl: "/tpl/letter-pc/mailList.tpl.html",
-    //         controller: "SearchMailListByBoxController",
-    //         resolve: {
-    //           mails: function(DgtPstFileItm, SearchConditionModel){
-    //             return DgtPstFileItm.get({boxId: 'allMail', pageNumber: '1', sortId: SearchConditionModel.sortId}).$promise;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   });
-}]);
-
-app.controller('AppCtrl', ['$scope', 'EventResource', function($scope, EventResource) {
-    $scope.events = EventResource.query();
+    $scope.showDialog = function(ev) {
+        $mdDialog.show({
+          controller: DialogCtrl,
+          templateUrl: 'dialog.tpl',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+      };
 
 
     $scope.register = function() {
-        EventResource.save($scope.event, function() {
-            $scope.events = EventResource.query();
+        TaskResource.save($scope.task, function() {
+            $scope.tasks = TaskResource.query();
+            $scope.task = '';
         });
-    }
+    };
+
+    $scope.update = function() {
+        TaskResource.update($scope.task, function() {
+            $scope.tasks = TaskResource.query();
+            $scope.task = '';
+        });
+    };
+
+    $scope.showUpdateModal = function(task) {
+        $scope.task = task;
+        $location.hash('create-task');
+    };
 }]);
 
+app.controller('DialogCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
 
-app.service('EventResource', function($resource) {
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+}]);
+
+app.factory('TaskResource', function($resource) {
   return $resource(
-    '/event/',
+    '/task/',
     {id: '@id'},
     {
       'get': {method:'GET'},
