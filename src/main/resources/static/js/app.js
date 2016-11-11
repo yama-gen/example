@@ -2,57 +2,46 @@
 
 var app = angular.module('app', ['ngResource', 'ngMaterial']);
 
-app.controller('AppCtrl', ['$scope', '$mdDialog', 'TaskResource', function($scope, $mdDialog, TaskResource) {
+app.config(['$httpProvider', function($httpProvider) {
+    // IEのAJAXリクエストキャッシュを無効化
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.common['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.common['Pragma'] = 'no-cache';
+    $httpProvider.defaults.headers.common['Expires'] = 0;
+}]);
+
+app.controller('AppCtrl', ['$scope', 'TaskResource', function($scope, TaskResource) {
     $scope.tasks = TaskResource.query();
 
-    $scope.showDialog = function(ev) {
-        $mdDialog.show({
-          controller: DialogCtrl,
-          templateUrl: 'dialog.tpl',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:true,
-          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-        })
-        .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          $scope.status = 'You cancelled the dialog.';
-        });
-      };
-
+    $scope.addTask = function() {
+        var task = {};
+        task.taskId = '';
+        task.name = '';
+        task.status = '新規';
+        task.deadline = '';
+        task.detail = '';
+        task.editable = true;
+        $scope.tasks.push(task);
+    };
 
     $scope.register = function() {
         TaskResource.save($scope.task, function() {
             $scope.tasks = TaskResource.query();
-            $scope.task = '';
         });
     };
 
     $scope.update = function() {
         TaskResource.update($scope.task, function() {
             $scope.tasks = TaskResource.query();
-            $scope.task = '';
         });
     };
 
-    $scope.showUpdateModal = function(task) {
-        $scope.task = task;
-        $location.hash('create-task');
-    };
-}]);
-
-app.controller('DialogCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
-    $scope.hide = function() {
-        $mdDialog.hide();
-    };
-
-    $scope.cancel = function() {
-        $mdDialog.cancel();
-    };
-
-    $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
+    $scope.delete = function() {
+        TaskResource.delete($scope.task, function() {
+            $scope.tasks = TaskResource.query();
+        });
     };
 }]);
 

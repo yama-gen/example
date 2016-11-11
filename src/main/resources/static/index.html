@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-aria.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-messages.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/1.4.0/angular-drag-and-drop-lists.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
     <script src="js/app.js"></script>
   </head>
@@ -19,22 +20,49 @@
       <div class="md-toolbar-tools">
         <h2><span>タスク管理</span></h2>
         <span flex></span>
-        <md-button class="md-raised md-primary" ng-click="showDialog($event)">タスク作成</md-button>
+        <md-button class="md-raised md-primary" ng-click="addTask()">タスク作成</md-button>
       </div>
     </md-toolbar>
     <md-content layout="row" layout-wrap>
         <md-card  md-theme-watch flex="30" ng-repeat="task in tasks">
           <md-card-title>
-            <md-card-title-text>
+            <md-card-title-text ng-if="task.editable">
+              <md-input-container flex-gt-sm style="margin:0">
+                <label>タスク名</label>
+                <input ng-model="task.name">
+              </md-input-container>
+              <div>
+                <md-input-container flex-gt-sm style="margin:0">
+                  <label>ステータス</label>
+                  <md-select ng-model="user.state">
+                    <md-option value="新規">新規</md-option>
+                    <md-option value="対応中">対応中</md-option>
+                    <md-option value="完了">完了</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container flex-gt-sm style="margin:0">
+                  <label>期限</label>
+                  <md-datepicker ng-model="task.deadline"></md-datepicker>
+                </md-input-container>
+              </div>
+              <md-input-container flex-gt-sm style="margin:0">
+                <label>詳細</label>
+                <textarea ng-model="task.detail" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+              </md-input-container>
+            </md-card-title-text>
+            <md-card-title-text ng-if="!task.editable">
               <span class="md-headline">{{task.name}}</span>
               <span class="md-subhead">{{task.status}}</span>
               <span class="md-subhead">{{task.deadline}}</span>
               <span class="md-subhead">{{task.detail}}</span>
             </md-card-title-text>
           </md-card-title>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-button>Action 1</md-button>
-            <md-button>Action 2</md-button>
+          <md-card-actions layout="row" layout-align="end center" ng-if="!task.id">
+            <md-button ng-click="register()">作成</md-button>
+          </md-card-actions>
+          <md-card-actions layout="row" layout-align="end center" ng-if="task.id">
+            <md-button ng-click="update()">更新</md-button>
+            <md-button ng-click="delete()">削除</md-button>
           </md-card-actions>
         </md-card>
     </md-content>
